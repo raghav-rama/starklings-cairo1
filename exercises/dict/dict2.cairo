@@ -4,14 +4,34 @@
 // Make me compile and pass the test!
 // Execute `starklings hint dict2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
-
-
 fn multiply_element_by_10(ref dict: Felt252Dict<u32>, n: usize) {
     //TODO : make a function that multiplies the elements stored at the indexes 0 to n of a dictionary by 10
+    let mut counter = 0;
+    loop {
+        let v = dict.get(counter);
+        dict.insert(counter, v * 10);
+        counter += 1;
+        if counter > 10 {
+            break ();
+        }
+    } 
+}
 
-
+impl Felt252PartialOrd of PartialOrd<felt252> {
+    #[inline(always)]
+    fn lt(lhs: felt252, rhs: felt252) -> bool {
+        integer::u256_from_felt252(lhs) < integer::u256_from_felt252(rhs)
+    }
+    fn le(lhs: felt252, rhs: felt252) -> bool {
+        lhs <= rhs
+    }
+    #[inline(always)]
+    fn gt(lhs: felt252, rhs: felt252) -> bool {
+        rhs < lhs
+    }
+    fn ge(lhs: felt252, rhs: felt252) -> bool {
+        rhs >= lhs
+    }
 }
 
 // Don't change anything in the test
